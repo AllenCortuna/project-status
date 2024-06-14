@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import connectToDatabase from '../../../lib/mongodb';
+import connectToDatabase from "../../../lib/mongodb";
 import Contract from "../../../models/contract";
 
 export async function POST(request) {
@@ -8,11 +8,10 @@ export async function POST(request) {
     const data = await request.json();
 
     try {
-      const contract = new Contract();
-      // assign the data
-      contract.name = data.name;
-      contract.description = data.description;
-      // save the data
+      const contract = new Contract({
+        ...data,
+      });
+
       const result = await contract.save();
       return NextResponse.json({
         data: result,
@@ -20,8 +19,6 @@ export async function POST(request) {
     } catch (error) {
       console.log("error :>> ", error);
     }
-
- 
   } catch (error) {
     console.error("ERROR: ", error);
     return NextResponse.json({
