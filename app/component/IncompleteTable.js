@@ -1,9 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Square } from "react-feather";
-import { XCircle } from "react-feather";
-import { CheckSquare } from "react-feather";
-import { CloudLightning } from "react-feather";
+import Link from "next/link";
+import React, {  } from "react";
+import { Check } from "react-feather";
 
 const IncompleteTable = ({ data }) => {
   return (
@@ -30,15 +28,17 @@ const IncompleteTable = ({ data }) => {
                   </span>:&nbsp;
                   {info.projectName}
                 </td>
-                <td className="text-xs text-zinc-500"><CheckSquare strokeWidth={3} size={20} className="text-green-700"/></td>
-                <td className="text-xs text-zinc-500"><CheckSquare strokeWidth={3} size={20} className="text-green-700"/></td>
-                <td className="text-xs text-zinc-500"><CheckSquare strokeWidth={3} size={20} className="text-green-700"/></td>
-                <td className="text-xs text-zinc-500"><CheckSquare strokeWidth={3} size={20} className="text-green-700"/></td>
-                <td className="text-xs text-zinc-500"><Square strokeWidth={3} size={20} className="text-zinc-400"/></td>
+                <td className="text-xs text-zinc-500"><Check strokeWidth={3} size={20} className="text-white bg-green-700 rounded-md p-1"/></td>
+                <td className="text-xs text-zinc-500"><Check strokeWidth={3} size={20} className="text-white bg-green-700 rounded-md p-1" /></td>
+                <td className="text-xs text-zinc-500"></td>
+                <td className="text-xs text-zinc-500"><Check strokeWidth={3} size={20} className="text-white bg-green-700 rounded-md p-1" /></td>
+                <td className="text-xs text-zinc-500"></td>
                 <td>
-                  <button className="btn btn-primary btn-sm text-xs text-white">
+                <button  className="btn btn-primary btn-sm text-xs text-white">
+                  <Link href={`/update-contract/${info._id}`}>
                     Update
-                  </button>
+                  </Link>
+                </button >
                 </td>
               </tr>
             ))}

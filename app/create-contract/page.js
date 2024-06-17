@@ -10,20 +10,13 @@ const CreateContracts = () => {
     batch: "",
     contractID: "",
     projectName: "",
-  });
-  const [date, setDate] = useState({
     posting: "",
     preBid: "",
     bidding: "",
   });
+ 
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setDate((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+
   const handleData = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
@@ -37,8 +30,7 @@ const CreateContracts = () => {
 
     // Validation check
     if (
-      Object.values(data).some((value) => value === "") ||
-      Object.values(date).some((value) => value === "")
+      Object.values(data).some((value) => value === "")
     ) {
       errorToast("Please fill in all fields.");
       return;
@@ -48,7 +40,7 @@ const CreateContracts = () => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/create-contract`,
-        { ...data, date: { ...date } },
+        { ...data },
         {
           headers: {
             "Content-Type": "application/json",
@@ -87,8 +79,8 @@ const CreateContracts = () => {
             <p className="primary-text ml-1">Posting Date: </p>
             <input
               name="posting"
-              value={date.posting}
-              onChange={handleChange}
+              value={data.posting}
+              onChange={handleData}
               className="custom-input w-52"
               type="date"
             />
@@ -98,8 +90,8 @@ const CreateContracts = () => {
             <p className="primary-text ml-1">Pre Bid Date: </p>
             <input
               name="preBid"
-              value={date.preBid}
-              onChange={handleChange}
+              value={data.preBid}
+              onChange={handleData}
               className="custom-input w-52"
               type="date"
             />
@@ -108,8 +100,8 @@ const CreateContracts = () => {
             <p className="primary-text ml-1">Bidding Date: </p>
             <input
               name="bidding"
-              value={date.bidding}
-              onChange={handleChange}
+              value={data.bidding}
+              onChange={handleData}
               className="custom-input w-52"
               type="date"
             />

@@ -9,16 +9,6 @@ const DocumentSchema = new mongoose.Schema({
   cari: { type: Boolean, default: false },
 });
 
-const DateSchema = new mongoose.Schema({
-  posting: { type: Date },
-  preBid: { type: Date },
-  bidding: { type: Date },
-  noa: { type: Date },
-  ntp: { type: Date },
-  contract: { type: Date },
-  ntpRecieve: { type: Date },
-});
-
 const ContractSchema = new mongoose.Schema({
   contractID: { type: String, unique: true, required: true },
   projectName: { type: String, required: true },
@@ -26,7 +16,15 @@ const ContractSchema = new mongoose.Schema({
   status: { type: String, required: true, default: "posted" },
   contractAmount: { type: Number },
   contractor: { type: String },
-  date: { type: DateSchema },
+  // date
+  posting: { type: Date },
+  preBid: { type: Date },
+  bidding: { type: Date },
+  noa: { type: Date },
+  ntp: { type: Date },
+  contract: { type: Date },
+  ntpRecieve: { type: Date },
+  // document
   submittedDocuments: { type: DocumentSchema, default: () => ({}) },
   isDocComplete: { type: Boolean },
   lastUpdated: { type: Date, default: Date.now },
@@ -40,6 +38,13 @@ ContractSchema.pre('save', function (next) {
   } else {
     this.isDocComplete = false;
   }
+  // if (this.noa && this.ntp) {
+  //   this.status = "proceed";
+  // } else if (this.noa) {
+  //   this.status = "awarded";
+  // } else {
+  //   this.status = "awarded"
+  // }
   next();
 });
 

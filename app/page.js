@@ -71,8 +71,8 @@ const Home = () => {
         </button>
       </div>
       {isLoading ? <Loading/> : null}
-      {table == "award" && !isLoading && <AwardTable data={data?.awardedList} /> }
-      {table == "incomplete" && !isLoading &&<IncompleteTable data={data?.incompleteDocList} />}
+      {table == "award" && data?.awarded > 0 && <AwardTable data={data?.awardedList} /> }
+      {table == "incomplete" && data?.incompleteDoc > 0 &&<IncompleteTable data={data?.incompleteDocList} />}
       
     </div>
   );
