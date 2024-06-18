@@ -6,7 +6,6 @@ export async function POST(request) {
   try {
     await connectToDatabase();
     const data = await request.json();
-    console.log("data", data);
 
     // Check if all submittedDocuments are true, excluding _id
     if (data.submittedDocuments) {

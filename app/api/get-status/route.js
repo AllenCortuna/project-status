@@ -9,18 +9,18 @@ export async function GET(request) {
     const posted = await Contract.countDocuments({ status: "posted" });
     const awarded = await Contract.countDocuments({ status: "awarded" });
     const incompleteDoc = await Contract.countDocuments({ isDocComplete: false });
-    const awardedList = await Contract.find({ status: "awarded" });
-    const incompleteDocList = await Contract.find({ isDocComplete: false });
-    const activeList = await Contract.find({ status: "posted"} );
+    const activeList = await Contract.find({ status: "posted" }).sort({ lastUpdated: -1 });
+    const awardedList = await Contract.find({ status: "awarded" }).sort({ lastUpdated: -1 });
+    const incompleteDocList = await Contract.find({ isDocComplete: false }).sort({ lastUpdated: -1 });
 
     return NextResponse.json({
       result: {
         posted,
         awarded,
         incompleteDoc,
+        activeList,
         awardedList,
-        incompleteDocList,
-        activeList
+        incompleteDocList
       },
     });
   } catch (error) {

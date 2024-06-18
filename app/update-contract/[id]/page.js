@@ -114,7 +114,7 @@ const UpdateContract = (params) => {
         <form className="flex flex-col gap-8 min-w-[60rem] mx-auto">
           <span className="gap-3 w-[15rem] flex">
             <h2 className="font-bold  text-lg my-auto">{data?.contractID}</h2>
-            <div className="border p-2 py-0 text-[0.7rem] text-center border-primary text-primary font-bold rounded-md">
+            <div className="border px-4 flex py-1 text-[0.7rem] text-center border-primary text-primary font-bold rounded-md">
               {data?.status}
             </div>
           </span>
