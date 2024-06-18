@@ -114,7 +114,7 @@ const UpdateContract = (params) => {
         <form className="flex flex-col gap-8 min-w-[60rem] mx-auto">
           <span className="gap-3 w-[15rem] flex">
             <h2 className="font-bold  text-lg my-auto">{data?.contractID}</h2>
-            <div className="border p-2 py-0 text-[0.6rem] border-primary text-primary font-bold rounded-md">
+            <div className="border p-2 py-0 text-[0.7rem] text-center border-primary text-primary font-bold rounded-md">
               {data?.status}
             </div>
           </span>
@@ -126,7 +126,7 @@ const UpdateContract = (params) => {
                 name="posting"
                 className="custom-input w-52"
                 type="date"
-                value={data?.posting.split("T")[0] || ""}
+                value={data?.posting?.split("T")[0] || ""}
                 onChange={handleData}
               />
             </span>
@@ -137,7 +137,7 @@ const UpdateContract = (params) => {
                 name="preBid"
                 className="custom-input w-52"
                 type="date"
-                value={data?.preBid.split("T")[0] || ""}
+                value={data?.preBid?.split("T")[0] || ""}
                 onChange={handleData}
               />
             </span>
@@ -147,7 +147,7 @@ const UpdateContract = (params) => {
                 name="bidding"
                 className="custom-input w-52"
                 type="date"
-                value={data?.bidding.split("T")[0] || ""}
+                value={data?.bidding?.split("T")[0] || ""}
                 onChange={handleData}
               />
             </span>
@@ -171,7 +171,7 @@ const UpdateContract = (params) => {
               className="custom-input w-full"
               name="projectName"
               placeholder="Project Name"
-              value={data.projectName}
+              value={data?.projectName}
               onChange={handleData}
             />
           </div>
@@ -228,7 +228,7 @@ const UpdateContract = (params) => {
                 <input
                   type="checkbox"
                   name="pertCPM"
-                  checked={data.submittedDocuments.pertCPM}
+                  checked={data?.submittedDocuments?.pertCPM}
                   onChange={handleCheckboxChange}
                 />
                 <span>PERT/CPM</span>
@@ -237,7 +237,7 @@ const UpdateContract = (params) => {
                 <input
                   type="checkbox"
                   name="freeClean"
-                  checked={data.submittedDocuments.freeClean}
+                  checked={data?.submittedDocuments?.freeClean}
                   onChange={handleCheckboxChange}
                 />
                 <span>Free & Clean</span>
@@ -246,7 +246,7 @@ const UpdateContract = (params) => {
                 <input
                   type="checkbox"
                   name="busPermit"
-                  checked={data.submittedDocuments.busPermit}
+                  checked={data?.submittedDocuments?.busPermit}
                   onChange={handleCheckboxChange}
                 />
                 <span>Business Permit</span>
@@ -255,7 +255,7 @@ const UpdateContract = (params) => {
                 <input
                   type="checkbox"
                   name="mayorPermit"
-                  checked={data.submittedDocuments.mayorPermit}
+                  checked={data?.submittedDocuments?.mayorPermit}
                   onChange={handleCheckboxChange}
                 />
                 <span>Mayors Permit</span>
@@ -264,7 +264,7 @@ const UpdateContract = (params) => {
                 <input
                   type="checkbox"
                   name="bonds"
-                  checked={data.submittedDocuments.bonds}
+                  checked={data?.submittedDocuments?.bonds}
                   onChange={handleCheckboxChange}
                 />
                 <span>Bonds</span>
@@ -273,7 +273,7 @@ const UpdateContract = (params) => {
                 <input
                   type="checkbox"
                   name="cari"
-                  checked={data.submittedDocuments.cari}
+                  checked={data?.submittedDocuments?.cari}
                   onChange={handleCheckboxChange}
                 />
                 <span>CARI</span>
