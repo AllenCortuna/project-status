@@ -9,8 +9,10 @@ export async function POST(request) {
     console.log("data", data);
 
     // Check if all submittedDocuments are true, excluding _id
-    if (data.submittedDocuments.pertCPM) {
-      data.isDocComplete = true;
+    if (data.submittedDocuments) {
+      data.isDocComplete = Object.entries(data.submittedDocuments)
+        .filter(([key]) => key !== "_id")
+        .every(([, value]) => value === true);
     } else {
       data.isDocComplete = false;
     }
