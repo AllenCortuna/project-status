@@ -2,9 +2,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import { errorToast, successToast } from "@/config/toast";
+import { useRouter } from 'next/navigation';
+
 
 const UpdateContract = (params) => {
   const id = params.params.id;
+  const router = useRouter();
   const [data, setData] = useState({
     contractID: "",
     projectName: "",
@@ -76,7 +80,29 @@ const UpdateContract = (params) => {
       },
     }));
   };
-
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log('data :>> ', data);
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/update-contract`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      successToast("Contract updated successfully!");
+      setIsLoading(false);
+      router.push('/')
+    } catch (error) {
+      errorToast(`Error updating contract: ${error.message}`);
+      setIsLoading(false);
+    }
+  };
   if (error) return <div>Error: {error.message}</div>;
 
   return (
@@ -195,10 +221,10 @@ const UpdateContract = (params) => {
           </span>
         </div>
         {/* submitted documents */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-5 mt-5">
           <p className="primary-text ml-1">Submitted Documents:</p>
-          <div className="flex flex-wrap gap-4">
-            <label className="flex items-center gap-2">
+          <div className="flex flex-wrap gap-8">
+            <label className="check-label">
               <input
                 type="checkbox"
                 name="pertCPM"
@@ -207,16 +233,16 @@ const UpdateContract = (params) => {
               />
               <span>PERT/CPM</span>
             </label>
-            <label className="flex items-center gap-2">
+            <label className="check-label">
               <input
                 type="checkbox"
                 name="freeClean"
                 checked={data.submittedDocuments.freeClean}
                 onChange={handleCheckboxChange}
               />
-              <span>Free Clean</span>
+              <span>Free & Clean</span>
             </label>
-            <label className="flex items-center gap-2">
+            <label className="check-label">
               <input
                 type="checkbox"
                 name="busPermit"
@@ -225,7 +251,7 @@ const UpdateContract = (params) => {
               />
               <span>Business Permit</span>
             </label>
-            <label className="flex items-center gap-2">
+            <label className="check-label">
               <input
                 type="checkbox"
                 name="mayorPermit"
@@ -234,7 +260,7 @@ const UpdateContract = (params) => {
               />
               <span>Mayors Permit</span>
             </label>
-            <label className="flex items-center gap-2">
+            <label className="check-label">
               <input
                 type="checkbox"
                 name="bonds"
@@ -243,7 +269,7 @@ const UpdateContract = (params) => {
               />
               <span>Bonds</span>
             </label>
-            <label className="flex items-center gap-2">
+            <label className="check-label">
               <input
                 type="checkbox"
                 name="cari"
@@ -260,6 +286,7 @@ const UpdateContract = (params) => {
             isLoading ? "btn-disable" : "btn-neutral"
           } text-xs mt-10 w-52 mx-auto`}
           disabled={isLoading}
+          onClick={handleSubmit}
         >
           {isLoading ? "Loading..." : "Update Contract"}
         </button>

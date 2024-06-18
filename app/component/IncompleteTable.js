@@ -7,7 +7,7 @@ const IncompleteTable = ({ data }) => {
   return (
     <div className="flex justify-center flex-col gap-5 mx-auto">
       <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto max-h-[30rem]">
-        <table className="table table-zebra w-[56rem]  table-pin-rows">
+        <table className="table table-zebra max-w-[72rem]  table-pin-rows">
           <thead>
             <tr className="text-xs text-zinc-500">
               <th className="text-xs">Incomplete Documents List</th>

@@ -29,4 +29,7 @@ body {
   .highligth-text {
     @apply text-xs text-zinc-600 font-semibold;
   }
+  .check-label {
+    @apply flex items-center gap-2 text-xs text-zinc-600 rounded-md p-2 border border-zinc-300
+  }
 }

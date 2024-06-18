@@ -5,12 +5,13 @@ import Contract from "../../../models/contract";
 export async function GET(request) {
   try {
     await connectToDatabase();
-    const posted = await Contract.countDocuments({status: "posted"});
-    const awarded = await Contract.countDocuments({status: "awarded"});
+    
+    const posted = await Contract.countDocuments({ status: "posted" });
+    const awarded = await Contract.countDocuments({ status: "awarded" });
     const incompleteDoc = await Contract.countDocuments({ isDocComplete: false });
-    const awardedList = await Contract.find({status: "awarded"});
+    const awardedList = await Contract.find({ status: "awarded" });
     const incompleteDocList = await Contract.find({ isDocComplete: false });
-
+    const activeList = await Contract.find({ status: "posted"} );
 
     return NextResponse.json({
       result: {
@@ -18,7 +19,8 @@ export async function GET(request) {
         awarded,
         incompleteDoc,
         awardedList,
-        incompleteDocList
+        incompleteDocList,
+        activeList
       },
     });
   } catch (error) {

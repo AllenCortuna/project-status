@@ -4,10 +4,11 @@ import axios from "axios";
 import AwardTable from "./component/AwardTable";
 import Loading from "./component/Loading";
 import IncompleteTable from "./component/IncompleteTable";
+import ActiveTable from "./component/ActiveTable";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [table, setTable] = useState("award");
+  const [table, setTable] = useState("incomplete");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -33,18 +34,20 @@ const Home = () => {
   return (
     <div className="flex min-h-screen flex-col items-center gap-10 p-20">
       <div className="stats border-2 border-zinc-300">
-        <div className="stat">
+
+        <button className="stat hover:bg-zinc-300"onClick={()=> setTable("active")}>
           {/* logo goes here */}
           <div className="stat-value text-primary flex gap-3 items-center">
-            {data?.posted ? data?.posted : "0"}{" "}
+            {data?.posted ? data?.posted : "0"}
             <span className="stat-title text-xs font-bold my-auto">
-              Active PhilGEPs
+              Posted
             </span>
           </div>
           <div className="stat-desc text-[0.7rem]">
-            Total contract(s) active in PhilGEPs
+          Contract posted with no Award
           </div>
-        </div>
+        </button>
+
         <button className="stat hover:bg-zinc-300"onClick={()=> setTable("award")}>
           {/* logo goes here */}
           <div className="stat-value text-primary flex gap-3 items-center">
@@ -71,6 +74,7 @@ const Home = () => {
         </button>
       </div>
       {isLoading ? <Loading/> : null}
+      {table == "active" && data?.posted > 0 && <ActiveTable data={data?.activeList} /> }
       {table == "award" && data?.awarded > 0 && <AwardTable data={data?.awardedList} /> }
       {table == "incomplete" && data?.incompleteDoc > 0 &&<IncompleteTable data={data?.incompleteDocList} />}
       
