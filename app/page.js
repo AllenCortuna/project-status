@@ -12,26 +12,30 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
-    try {
-      console.log("id", id);
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-contract`,
-        { data:  },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log("response", response);
-      setData(response.data.result);
-      setIsLoading(false);
-    } catch (error) {
-      setError(error);
-      setIsLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-status`,
+          { data: "get-status" },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log("response", response);
+        setData(response.data.result);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
 
   return (
