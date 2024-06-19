@@ -13,37 +13,26 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   const fetchData = async () => {
-    console.log("Fetching data...");
-    setIsLoading(true);
-    setError(null);
     try {
+      console.log("id", id);
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-status`,
-        {data: "get-status"},
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-contract`,
+        { data:  },
         {
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
         }
       );
-      console.log("API Response:", response.data);
-      if (response.data && response.data.result) {
-        setData(response.data.result);
-        console.log("Data set:", response.data.result);
-      } else {
-        throw new Error("Unexpected API response structure");
-      }
+      console.log("response", response);
+      setData(response.data.result);
+      setIsLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
       setError(error);
-    } finally {
       setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []); // Ensure the dependency array is empty to fetch data on mount
 
   return (
     <div className="flex min-h-screen flex-col items-center gap-10 p-20">
