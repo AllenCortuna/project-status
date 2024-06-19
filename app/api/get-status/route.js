@@ -2,20 +2,25 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '../../../lib/mongodb';
 import Contract from '../../../models/contract';
 
-export async function GET() {
+export async function POST(request) {
   try {
     await connectToDatabase();
-
     console.log('Database connected');
 
-    const [posted, awarded, incompleteDoc, activeList, awardedList, incompleteDocList] = await Promise.all([
+    const statusConditions = { status: { $in: ['posted', 'awarded', 'proceed'] } };
+    const docConditions = { isDocComplete: false, status: { $in: ['awarded', 'proceed'] } };
+
+    const [posted, awarded, incompleteDoc, contracts] = await Promise.all([
       Contract.countDocuments({ status: 'posted' }),
       Contract.countDocuments({ status: 'awarded' }),
-      Contract.countDocuments({ isDocComplete: false }),
-      Contract.find({ status: 'posted' }).sort({ lastUpdated: -1 }),
-      Contract.find({ status: 'awarded' }).sort({ lastUpdated: -1 }),
-      Contract.find({ isDocComplete: false }).sort({ lastUpdated: -1 }),
+      Contract.countDocuments(docConditions),
+      Contract.find(statusConditions).sort({ lastUpdated: -1 })
     ]);
+
+    const activeList = contracts.filter(contract => contract.status === 'posted');
+    const awardedList = contracts.filter(contract => contract.status === 'awarded');
+    const incompleteDocList = contracts.filter(contract => docConditions.status.$in.includes(contract.status) && !contract.isDocComplete);
+
     return NextResponse.json({
       result: {
         posted,

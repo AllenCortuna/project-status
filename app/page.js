@@ -17,11 +17,12 @@ const Home = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/get-status`,
+        {data: "get-status"},
         {
           headers: {
-            'Cache-Control': 'no-cache',
+            "Content-Type": "application/json"
           },
         }
       );

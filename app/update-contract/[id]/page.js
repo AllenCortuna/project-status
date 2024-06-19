@@ -219,6 +219,18 @@ const UpdateContract = (params) => {
               />
             </span>
           </div>
+          {/* contractor */}
+          <div className="flex gap-10">
+            <input
+              type="text"
+              autoComplete="off"
+              className="custom-input w-full"
+              name="contractor"
+              placeholder="Contractor Name"
+              value={data?.contractor}
+              onChange={handleData}
+            />
+          </div>
           {/* submitted documents */}
           <div className="flex flex-col gap-5 mt-5">
             <p className="primary-text ml-1">Submitted Documents:</p>
