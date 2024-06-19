@@ -10,8 +10,8 @@ const AwardTable = ({ data }) => {
           <thead>
             <tr className="text-xs text-zinc-500">
               <th className="text-xs">Awarded List</th>
+              <th className="w-40">Bidding</th>
               <th className="w-40">NOA</th>
-              <th>Status</th>
               <th>Options</th>
             </tr>
           </thead>
@@ -24,8 +24,8 @@ const AwardTable = ({ data }) => {
                   </span>:&nbsp;
                   {info.projectName}
                 </td>
+                <td className="text-xs text-zinc-500">{info?.bidding?.split("T")[0] || ""}</td>
                 <td className="text-xs text-zinc-500">{info?.noa?.split("T")[0] || ""}</td>
-                <td className="text-xs text-zinc-500">{info?.status}</td>
                 <td>
                 <button  className="btn btn-primary btn-sm text-xs text-white">
                   <Link href={`/update-contract/${info._id}`}>

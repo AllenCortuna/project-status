@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 const ActiveTable = ({ data }) => {
   return (
     <div className="flex justify-center flex-col gap-5 mx-auto">
-      <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto max-h-[30rem]">
+      <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto scroll-container max-h-[20rem]">
         <table className="table table-zebra max-w-[72rem] table-pin-rows">
           <thead>
             <tr className="text-xs text-zinc-500">

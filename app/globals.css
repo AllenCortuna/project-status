@@ -33,3 +33,30 @@ body {
     @apply flex items-center gap-2 text-xs text-zinc-600 rounded-md p-2 border border-zinc-300
   }
 }
+
+/* Total scrollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  background: #7ec5eb;
+  border-radius: 10px;
+}
+
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #7ec5eb;
+}
+
+/* Optional: Scrollbar corner for resizable containers */
+::-webkit-scrollbar-corner {
+  background: #999;
+}

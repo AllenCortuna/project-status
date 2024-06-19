@@ -51,6 +51,9 @@ const CreateContracts = () => {
       if (response.status == 200) {
         setData({
           batch: data.batch,
+          posting: data.posting,
+          preBid: data.preBid,
+          bidding: data.bidding,
           contractID: "",
           projectName: "",
         });
