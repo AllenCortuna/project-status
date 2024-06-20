@@ -12,6 +12,9 @@ export const Navbar = () => {
         </Link>
       </div>
       <div className="flex-none">
+        <button className="btn btn-outline btn-sm text-xs text-primary font-bold rounded-full px-5">
+        <Link href={"/search-contracts"} className="my-auto">search</Link>
+        </button>
         <ul className="menu menu-horizontal px-1 text-xs">
           <li>
             <details>

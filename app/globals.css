@@ -41,13 +41,13 @@ body {
 
 /* Scrollbar track */
 ::-webkit-scrollbar-track {
-  background: #7ec5eb;
+  background: #fafafa;
   border-radius: 10px;
 }
 
 /* Scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #57afde;
   border-radius: 10px;
 }
 
@@ -58,5 +58,5 @@ body {
 
 /* Optional: Scrollbar corner for resizable containers */
 ::-webkit-scrollbar-corner {
-  background: #999;
+  background: #ffffff;
 }
