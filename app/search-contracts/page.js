@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { errorToast } from "@/config/toast";
 import { ToastContainer } from "react-toastify";
+import Link from "next/link";
+import Image from "next/image";
+import query from '../../public/img/Query-Insight.svg'
+
 
 const SearchContracts = () => {
   const [contractID, setContractID] = useState("");
@@ -45,67 +49,101 @@ const SearchContracts = () => {
   };
 
   return (
-    <div>
+    <div className="flex w-screen flex-col justify-center items-center p-5">
       <ToastContainer />
-      <div className="flex gap-4 mb-4">
+      <div className="grid grid-cols-3  gap-4 mb-4 max-w-[40rem]">
         <input
           type="text"
           placeholder="Contract ID"
           value={contractID}
           onChange={(e) => setContractID(e.target.value)}
-          className="border p-2"
+          className="custom-input"
         />
-        <input
-          type="text"
-          placeholder="Project Name"
-          value={projectName}
-          onChange={(e) => setProjectName(e.target.value)}
-          className="border p-2"
-        />
+
         <input
           type="text"
           placeholder="Batch"
           value={batch}
           onChange={(e) => setBatch(e.target.value)}
-          className="border p-2"
+          className="custom-input"
         />
         <input
           type="text"
           placeholder="Status"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="border p-2"
+          className="custom-input"
         />
-        <button onClick={handleSearch} className="bg-blue-500 text-white p-2">
-          Search
-        </button>
+
+        <input
+          type="text"
+          placeholder="Project Name"
+          value={projectName}
+          onChange={(e) => setProjectName(e.target.value)}
+          className="custom-input col-span-3"
+        />
       </div>
-      {isLoading && <p>Loading...</p>}
+      <button
+        onClick={handleSearch}
+        className={`btn ${
+          isLoading ? "btn-disable" : "btn-neutral"
+        } text-xs mt-5 w-48 mx-auto`}
+        disabled={isLoading}
+      >
+        {isLoading ? "Loading..." : "Search"}
+      </button>
       {error && <p className="text-red-500">Error: {error.message}</p>}
       <div>
         {results.length > 0 ? (
-          <table className="table-auto w-full">
-            <thead>
-              <tr>
-                <th>Contract ID</th>
-                <th>Project Name</th>
-                <th>Batch</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {results.map((contract) => (
-                <tr key={contract._id}>
-                  <td>{contract.contractID}</td>
-                  <td>{contract.projectName}</td>
-                  <td>{contract.batch}</td>
-                  <td>{contract.status}</td>
+          <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto scroll-container max-h-[40rem]">
+            <table className="table table-zebra max-w-[72rem] table-pin-rows">
+              <thead>
+                <tr className="text-xs text-zinc-500">
+                  <th className="text-xs">Result base on your search</th>
+                  <th className="w-40">Status</th>
+                  <th className="w-40">last Update</th>
+                  <th>Options</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {results?.map((info, ind) => (
+                  <tr key={ind} className="hover">
+                    <td className="text-xs text-zinc-500">
+                      <span className="text-xs text-primary font-bold">
+                        {info.contractID}
+                      </span>
+                      :&nbsp;
+                      {info.projectName}
+                    </td>
+                    <td className="text-xs text-zinc-500">
+                      {info?.status || ""}
+                    </td>
+                    <td className="text-xs text-zinc-500">
+                      {info?.lastUpdated?.split("T")[0] || ""}
+                    </td>
+                    <td>
+                      <button className="btn btn-primary btn-sm text-xs text-white">
+                        <Link href={`/update-contract/${info._id}`}>
+                          Update
+                        </Link>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
-          !isLoading && <p>No results found.</p>
+          !isLoading && (
+            <div className="w-[30rem] flex justify-center items-center flex-col mt-10">
+              <Image
+                src={query}
+                alt="Query Logo.png"
+                width={500}
+              />
+              <p className="text-lg font-bold text-primary">No results found.</p>
+            </div>
+          )
         )}
       </div>
     </div>
