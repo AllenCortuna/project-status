@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { format } from "date-fns";
 
-const ActiveTable = ({ data }) => {
+const ActiveTable = ({ data, isLogin }) => {
   return (
     <div className="flex justify-center flex-col gap-5 mx-auto">
       <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto scroll-container max-h-[40rem]">
@@ -21,17 +22,24 @@ const ActiveTable = ({ data }) => {
                 <td className="text-xs text-zinc-500">
                   <span className="text-xs text-primary font-bold">
                     {info.contractID}
-                  </span>:&nbsp;
+                  </span>
+                  :&nbsp;
                   {info.projectName}
                 </td>
-                <td className="text-xs text-zinc-500">{info?.preBid?.split("T")[0] || ""}</td>
-                <td className="text-xs text-zinc-500">{info?.bidding?.split("T")[0] || ""}</td>
+                <td className="text-xs text-zinc-500">
+                  {format(new Date(info?.preBid), "MMM-d-yyyy") || ""}
+                </td>
+                <td className="text-xs text-zinc-500">
+                  {format(new Date(info?.bidding), "MMM-d-yyyy") || ""}
+                </td>
                 <td>
-                <button  className="btn btn-primary btn-sm text-xs text-white">
-                  <Link href={`/update-contract/${info._id}`}>
-                    Update
-                  </Link>
-                </button >
+                  <span className="btn btn-primary btn-sm text-xs text-white">
+                    {isLogin ? (
+                      <Link href={`/update-contract/${info._id}`}>Update</Link>
+                    ) : (
+                      <Link href={`/contract-info/${info._id}`}>details</Link>
+                    )}
+                  </span>
                 </td>
               </tr>
             ))}

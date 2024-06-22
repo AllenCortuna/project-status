@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import React, {  } from "react";
+import React from "react";
 import { Check } from "react-feather";
 
-const IncompleteTable = ({ data }) => {
+const IncompleteTable = ({ data, isLogin }) => {
   return (
     <div className="flex justify-center flex-col gap-5 mx-auto">
       <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto max-h-[30rem]">
@@ -25,20 +25,64 @@ const IncompleteTable = ({ data }) => {
                 <td className="text-xs text-zinc-500">
                   <span className="text-xs text-primary font-bold">
                     {info.contractID}
-                  </span>:&nbsp;
+                  </span>
+                  :&nbsp;
                   {info.projectName}
                 </td>
-                <td className="text-xs text-zinc-500">{info?.submittedDocuments?.mayorPermit && info?.submittedDocuments?.busPermit ? <Check strokeWidth={3} size={20} className="text-white bg-green-700 rounded-md p-1"/> : null}</td>
-                <td className="text-xs text-zinc-500">{info?.submittedDocuments?.bonds ? <Check strokeWidth={3} size={20} className="text-white bg-green-700 rounded-md p-1"/> : null}</td>
-                <td className="text-xs text-zinc-500">{info?.submittedDocuments?.cari ? <Check strokeWidth={3} size={20} className="text-white bg-green-700 rounded-md p-1"/> : null}</td>
-                <td className="text-xs text-zinc-500">{info?.submittedDocuments?.pertCPM ? <Check strokeWidth={3} size={20} className="text-white bg-green-700 rounded-md p-1"/> : null}</td>
-                <td className="text-xs text-zinc-500">{info?.submittedDocuments?.freeClean ? <Check strokeWidth={3} size={20} className="text-white bg-green-700 rounded-md p-1"/> : null}</td>
+                <td className="text-xs text-zinc-500">
+                  {info?.submittedDocuments?.mayorPermit &&
+                  info?.submittedDocuments?.busPermit ? (
+                    <Check
+                      strokeWidth={3}
+                      size={20}
+                      className="text-white bg-green-700 rounded-md p-1"
+                    />
+                  ) : null}
+                </td>
+                <td className="text-xs text-zinc-500">
+                  {info?.submittedDocuments?.bonds ? (
+                    <Check
+                      strokeWidth={3}
+                      size={20}
+                      className="text-white bg-green-700 rounded-md p-1"
+                    />
+                  ) : null}
+                </td>
+                <td className="text-xs text-zinc-500">
+                  {info?.submittedDocuments?.cari ? (
+                    <Check
+                      strokeWidth={3}
+                      size={20}
+                      className="text-white bg-green-700 rounded-md p-1"
+                    />
+                  ) : null}
+                </td>
+                <td className="text-xs text-zinc-500">
+                  {info?.submittedDocuments?.pertCPM ? (
+                    <Check
+                      strokeWidth={3}
+                      size={20}
+                      className="text-white bg-green-700 rounded-md p-1"
+                    />
+                  ) : null}
+                </td>
+                <td className="text-xs text-zinc-500">
+                  {info?.submittedDocuments?.freeClean ? (
+                    <Check
+                      strokeWidth={3}
+                      size={20}
+                      className="text-white bg-green-700 rounded-md p-1"
+                    />
+                  ) : null}
+                </td>
                 <td>
-                <button  className="btn btn-primary btn-sm text-xs text-white">
-                  <Link href={`/update-contract/${info._id}`}>
-                    Update
-                  </Link>
-                </button >
+                  <span className="btn btn-primary btn-sm text-xs text-white">
+                    {isLogin ? (
+                      <Link href={`/update-contract/${info._id}`}>Update</Link>
+                    ) : (
+                      <Link href={`/contract-info/${info._id}`}>details</Link>
+                    )}
+                  </span>
                 </td>
               </tr>
             ))}

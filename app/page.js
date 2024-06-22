@@ -11,6 +11,13 @@ const Home = () => {
   const [table, setTable] = useState("incomplete");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    // Check if the user is logged in by verifying the token in local storage
+    const token = localStorage.getItem("token");
+    setIsLogin(!!token);
+  }, [isLogin]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,9 +74,9 @@ const Home = () => {
       </div>
       {isLoading && <Loading />}
       {error && <div className="text-red-500">Error: {error.message}</div>}
-      {table === "active" && data?.posted > 0 && <ActiveTable data={data?.activeList} />}
-      {table === "award" && data?.awarded > 0 && <AwardTable data={data?.awardedList} />}
-      {table === "incomplete" && data?.incompleteDoc > 0 && <IncompleteTable data={data?.incompleteDocList} />}
+      {table === "active" && data?.posted > 0 && <ActiveTable data={data?.activeList} isLogin={isLogin}/>}
+      {table === "award" && data?.awarded > 0 && <AwardTable data={data?.awardedList} isLogin={isLogin}/>}
+      {table === "incomplete" && data?.incompleteDoc > 0 && <IncompleteTable data={data?.incompleteDocList} isLogin={isLogin}/>}
     </div>
   );
 };

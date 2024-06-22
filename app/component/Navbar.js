@@ -1,22 +1,46 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import dpwhLogo from '../../public/dpwhLogo.png'
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import dpwhLogo from "../../public/dpwhLogo.png";
 import { Search } from "react-feather";
+
 export const Navbar = () => {
+  const [isLogin, setIsLogin] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Check if the user is logged in by verifying the token in local storage
+    const token = localStorage.getItem("token");
+    setIsLogin(!!token);
+  }, [isLogin]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLogin(false);
+    router.push("/login");
+  };
+
   return (
     <div className="navbar bg-base-100 px-20 bg-zinc-200">
       <div className="flex-1">
-        <Link href={"/"} className={`text-md font-[600] text-zinc-600 flex gap-5`}>
-          <Image src={dpwhLogo} alt="DPWH Logo.png"  width={40} height={40}/>
+        <Link
+          href={"/"}
+          className={`text-md font-[600] text-zinc-600 flex gap-5`}
+        >
+          <Image src={dpwhLogo} alt="DPWH Logo" width={40} height={40} />
           <b className="text-orange-500 my-auto">PMIS</b>
         </Link>
       </div>
       <div className="flex-none">
-        <button className="btn btn-outline btn-sm text-xs text-primary font-bold rounded-md pr-7 mr-5 flex gap-3">
-          <Search size={15}/>
-        <Link href={"/search-contracts"} className="my-auto">search</Link>
-        </button>
+        <Link
+          href={"/search-contracts"}
+          className="my-auto btn btn-primary btn-sm text-xs text-white rounded-full mr-5 flex gap-0 pr-4"
+        >
+          <Search width={15}/>
+          search
+        </Link>
         <ul className="menu menu-horizontal px-1 text-xs">
           <li>
             <details>
@@ -29,7 +53,11 @@ export const Navbar = () => {
                   <Link href={"/create-contract"}>Upload</Link>
                 </li>
                 <li>
-                  <Link href={"/login"}>Login</Link>
+                  {isLogin ? (
+                    <button onClick={handleLogout}>Logout</button>
+                  ) : (
+                    <Link href={"/login"}>Login</Link>
+                  )}
                 </li>
               </ul>
             </details>
