@@ -6,7 +6,7 @@ import { format } from "date-fns";
 const ActiveTable = ({ data, isLogin }) => {
   return (
     <div className="flex justify-center flex-col gap-5 mx-auto">
-      <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto scroll-container max-h-[40rem]">
+      <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto scroll-container max-h-[25rem]">
         <table className="table table-zebra max-w-[72rem] table-pin-rows">
           <thead>
             <tr className="text-xs text-zinc-500">
@@ -35,7 +35,7 @@ const ActiveTable = ({ data, isLogin }) => {
                 <td>
                   <span className="btn btn-primary btn-sm text-xs text-white">
                     {isLogin ? (
-                      <Link href={`/update-contract/${info._id}`}>Update</Link>
+                      <Link href={`/update-contract/${info._id}`}>update</Link>
                     ) : (
                       <Link href={`/contract-info/${info._id}`}>details</Link>
                     )}

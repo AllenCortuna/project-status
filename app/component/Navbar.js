@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import dpwhLogo from "../../public/dpwhLogo.png";
-import { Search } from "react-feather";
 
 export const Navbar = () => {
   const [isLogin, setIsLogin] = useState(false);

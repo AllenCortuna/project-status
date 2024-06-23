@@ -78,7 +78,7 @@ const IncompleteTable = ({ data, isLogin }) => {
                 <td>
                   <span className="btn btn-primary btn-sm text-xs text-white">
                     {isLogin ? (
-                      <Link href={`/update-contract/${info._id}`}>Update</Link>
+                      <Link href={`/update-contract/${info._id}`}>update</Link>
                     ) : (
                       <Link href={`/contract-info/${info._id}`}>details</Link>
                     )}

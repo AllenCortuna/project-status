@@ -5,8 +5,8 @@ const font = Martian_Mono ({ subsets: ["latin"], weight: ["200","400","500","600
 import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
-  title: "MODEO Web App",
-  description: "DPWH MODEO Web Application",
+  title: "MODEO PMIS",
+  description: "DPWH MODEO Project Management Information System",
 };
 
 export default function RootLayout({ children }) {
