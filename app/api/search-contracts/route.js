@@ -15,12 +15,12 @@ export async function GET(request) {
 
     const query = {};
 
-    if (contractID) query.contractID = contractID;
+    if (contractID) query.contractID = { $regex: contractID, $options: 'i' };
     if (projectName) query.projectName = { $regex: projectName, $options: 'i' }; // Case insensitive search
     if (batch) query.batch = batch;
     if (status) query.status = status;
 
-    const contracts = await Contract.find(query);
+    const contracts = await Contract.find(query).limit(20);
 
     return NextResponse.json({ result: contracts });
   } catch (error) {

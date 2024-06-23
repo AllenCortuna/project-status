@@ -36,9 +36,8 @@ export const Navbar = () => {
       <div className="flex-none">
         <Link
           href={"/search-contracts"}
-          className="my-auto btn btn-primary btn-sm text-xs text-white rounded-full mr-5 flex gap-0 pr-4"
+          className="my-auto btn btn-outline btn-sm text-xs text-zinc-600 rounded-full mr-5 flex w-24"
         >
-          <Search width={15}/>
           search
         </Link>
         <ul className="menu menu-horizontal px-1 text-xs">

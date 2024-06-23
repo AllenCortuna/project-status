@@ -44,9 +44,7 @@ const LoginPage = () => {
   return (
     <div className="w-80 mx-auto flex flex-col justify-center items-center gap-10 p-5 mt-20 rounded-lg">
       <ToastContainer />
-      <h1 className="border px-4 flex py-1 text-normal text-center border-primary text-primary font-bold rounded-md">
-        Login
-      </h1>
+  
       <form onSubmit={handleLogin} className="p-5 flex gap-10 flex-col ">
         <div>
           <label className="primary-text ml-1 mb-1">Username:</label>
@@ -71,7 +69,7 @@ const LoginPage = () => {
         <button
           className={`btn ${
             isLoading ? "btn-disable" : "btn-neutral"
-          } text-xs mt-10 w-52 mx-auto`}
+          } text-xs w-28 mx-auto`}
           disabled={isLoading}
           type="submit"
         >

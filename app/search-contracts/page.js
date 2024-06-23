@@ -1,6 +1,6 @@
 // components/SearchContracts.js
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { errorToast } from "@/config/toast";
 import { ToastContainer } from "react-toastify";
@@ -17,6 +17,12 @@ const SearchContracts = () => {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLogin(!!token);
+  }, [isLogin]);
 
   const handleSearch = async () => {
     setIsLoading(true);
@@ -51,7 +57,7 @@ const SearchContracts = () => {
   return (
     <div className="flex w-screen flex-col justify-center items-center p-5">
       <ToastContainer />
-      <div className="grid grid-cols-3  gap-4 mb-4 max-w-[40rem]">
+      <div className="grid grid-cols-3 mt-10  gap-4 mb-4 max-w-[40rem]">
         <input
           type="text"
           placeholder="Contract ID"
@@ -95,7 +101,7 @@ const SearchContracts = () => {
       {error && <p className="text-red-500">Error: {error.message}</p>}
       <div>
         {results.length > 0 ? (
-          <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto scroll-container max-h-[40rem]">
+          <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto scroll-container max-h-[30rem]">
             <table className="table table-zebra max-w-[72rem] table-pin-rows">
               <thead>
                 <tr className="text-xs text-zinc-500">
@@ -122,11 +128,13 @@ const SearchContracts = () => {
                       {info?.lastUpdated?.split("T")[0] || ""}
                     </td>
                     <td>
-                      <button className="btn btn-primary btn-sm text-xs text-white">
-                        <Link href={`/update-contract/${info._id}`}>
-                          Update
-                        </Link>
-                      </button>
+                    <span className="btn btn-primary btn-sm text-xs text-white">
+                    {isLogin ? (
+                      <Link href={`/update-contract/${info._id}`}>Update</Link>
+                    ) : (
+                      <Link href={`/contract-info/${info._id}`}>details</Link>
+                    )}
+                  </span>
                     </td>
                   </tr>
                 ))}
@@ -139,9 +147,9 @@ const SearchContracts = () => {
               <Image
                 src={query}
                 alt="Query Logo.png"
-                width={500}
+                width={300}
               />
-              <p className="text-lg font-bold text-primary">No results found.</p>
+              <p className="text-xs font-bold px-5 text-primary border rounded-lg p-3 border-primary">No results found.</p>
             </div>
           )
         )}

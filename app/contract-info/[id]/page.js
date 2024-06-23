@@ -55,7 +55,7 @@ const ContractInfo = (params) => {
           </span>
 
           {/* name */}
-          <div className="flex">
+          <div className="flex -mt-10">
             <span className="gap-2 flex flex-col">
               <span className="text-xs text-zinc-500">
                 {data?.projectName || "N/A"}

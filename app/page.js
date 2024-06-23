@@ -44,39 +44,101 @@ const Home = () => {
     fetchData();
   }, []);
 
-
   return (
-    <div className="flex min-h-screen flex-col items-center gap-10 p-20">
+    <div className="flex flex-col items-center gap-10 p-20">
       <div className="stats border-2 border-zinc-300">
-        <button className="stat hover:bg-zinc-300" onClick={() => setTable("active")}>
-          <div className="stat-value text-primary flex gap-3 items-center">
+        <button
+          className={`stat ${table == "active" && "bg-primary"}`}
+          onClick={() => setTable("active")}
+        >
+          <div
+            className={`stat-value flex gap-3 items-center ${
+              table == "active" ? "text-white" : "text-primary"
+            }`}
+          >
             {data?.posted || "0"}
-            <span className="stat-title text-xs font-bold my-auto">Posted</span>
+            <span
+              className={`stat-title text-xs font-bold my-auto ${
+                table == "active" ? "text-white" : "text-primary"
+              } `}
+            >
+              Posted
+            </span>
           </div>
-          <div className="stat-desc text-[0.7rem]">Contract posted with no Award</div>
+          <div
+            className={`stat-desc text-[0.7rem] ${
+              table == "active" && "text-zinc-200"
+            } `}
+          >
+            Contract posted with no Award
+          </div>
         </button>
 
-        <button className="stat hover:bg-zinc-300" onClick={() => setTable("award")}>
-          <div className="stat-value text-primary flex gap-3 items-center">
+        <button
+          className={`stat ${table == "award" && "bg-primary"}`}
+          onClick={() => setTable("award")}
+        >
+          <div
+            className={`stat-value flex gap-3 items-center ${
+              table == "award" ? "text-white" : "text-primary"
+            }`}
+          >
             {data?.awarded || "0"}
-            <span className="stat-title text-xs font-bold my-auto">Awarded</span>
+            <span
+              className={`stat-title text-xs font-bold my-auto ${
+                table == "award" ? "text-white" : "text-primary"
+              } `}
+            >
+              Awarded
+            </span>
           </div>
-          <div className="stat-desc text-[0.7rem]">Total contract(s) without NTP</div>
+          <div
+            className={`stat-desc text-[0.7rem] ${
+              table == "award" && "text-zinc-200"
+            } `}
+          >
+            Total contract(s) without NTP
+          </div>
         </button>
 
-        <button className="stat hover:bg-zinc-300" onClick={() => setTable("incomplete")}>
-          <div className="stat-value text-primary flex gap-3 items-center">
+        <button
+          className={`stat ${table == "incomplete" && "bg-primary"}`}
+          onClick={() => setTable("incomplete")}
+        >
+          <div
+            className={`stat-value flex gap-3 items-center ${
+              table == "incomplete" ? "text-white" : "text-primary"
+            }`}
+          >
             {data?.incompleteDoc || "0"}
-            <span className="stat-title text-xs font-bold my-auto">Incomplete Documents</span>
+            <span
+              className={`stat-title text-xs font-bold my-auto ${
+                table == "incomplete" ? "text-white" : "text-primary"
+              } `}
+            >
+              Incomplete Documents
+            </span>
           </div>
-          <div className="stat-desc text-[0.7rem]">Incomplete Pert CPM, Permit etc</div>
+          <div
+            className={`stat-desc text-[0.7rem] ${
+              table == "incomplete" && "text-zinc-200"
+            } `}
+          >
+            Incomplete Pert CPM, Permit etc
+          </div>
         </button>
       </div>
       {isLoading && <Loading />}
       {error && <div className="text-red-500">Error: {error.message}</div>}
-      {table === "active" && data?.posted > 0 && <ActiveTable data={data?.activeList} isLogin={isLogin}/>}
-      {table === "award" && data?.awarded > 0 && <AwardTable data={data?.awardedList} isLogin={isLogin}/>}
-      {table === "incomplete" && data?.incompleteDoc > 0 && <IncompleteTable data={data?.incompleteDocList} isLogin={isLogin}/>}
+      {table === "active" && data?.posted > 0 && (
+        <ActiveTable data={data?.activeList} isLogin={isLogin} />
+      )}
+      {table === "award" && data?.awarded > 0 && (
+        <AwardTable data={data?.awardedList} isLogin={isLogin} />
+      )}
+      {table === "incomplete" && data?.incompleteDoc > 0 && (
+        <IncompleteTable data={data?.incompleteDocList} isLogin={isLogin} />
+      )}
     </div>
   );
 };
