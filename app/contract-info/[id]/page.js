@@ -44,7 +44,7 @@ const ContractInfo = (params) => {
       {isLoading ? (
         <Loading />
       ) : (
-        <span className="flex flex-col gap-14 w-[50rem] mx-auto">
+        <span className="flex flex-col gap-14 w-[54rem] mx-auto">
           <span className="gap-3 w-[15rem] flex">
             <h2 className="font-bold text-zinc-600 text-lg my-auto">
               {data?.contractID}

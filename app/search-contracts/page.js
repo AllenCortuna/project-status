@@ -1,13 +1,12 @@
 // components/SearchContracts.js
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { errorToast } from "@/config/toast";
 import { ToastContainer } from "react-toastify";
 import Link from "next/link";
 import Image from "next/image";
 import query from '../../public/img/Query-Insight.svg'
-
 
 const SearchContracts = () => {
   const [contractID, setContractID] = useState("");
@@ -29,7 +28,7 @@ const SearchContracts = () => {
     setError(null);
     try {
       if (!contractID && !projectName && !batch && !status) {
-        errorToast("Please fill atleast 1 input field");
+        errorToast("Please fill at least 1 input field");
       } else {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/search-contracts`,
@@ -57,7 +56,7 @@ const SearchContracts = () => {
   return (
     <div className="flex w-screen flex-col justify-center items-center p-5">
       <ToastContainer />
-      <div className="grid grid-cols-3 mt-10  gap-4 mb-4 max-w-[40rem]">
+      <div className="grid grid-cols-3 mt-10 gap-4 mb-4 max-w-[40rem]">
         <input
           type="text"
           placeholder="Contract ID"
@@ -73,13 +72,17 @@ const SearchContracts = () => {
           onChange={(e) => setBatch(e.target.value)}
           className="custom-input"
         />
-        <input
-          type="text"
-          placeholder="Status"
+
+        <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           className="custom-input"
-        />
+        >
+          <option value="">Status</option>
+          <option value="posted">Posted</option>
+          <option value="awarded">Awarded</option>
+          <option value="proceed">Proceed</option>
+        </select>
 
         <input
           type="text"
@@ -107,7 +110,7 @@ const SearchContracts = () => {
                 <tr className="text-xs text-zinc-500">
                   <th className="text-xs">Result base on your search</th>
                   <th className="w-40">Status</th>
-                  <th className="w-40">last Update</th>
+                  <th className="w-40">Last Update</th>
                   <th>Options</th>
                 </tr>
               </thead>
@@ -128,13 +131,13 @@ const SearchContracts = () => {
                       {info?.lastUpdated?.split("T")[0] || ""}
                     </td>
                     <td>
-                    <span className="btn btn-primary btn-sm text-xs text-white">
-                    {isLogin ? (
-                      <Link href={`/update-contract/${info._id}`}>update</Link>
-                    ) : (
-                      <Link href={`/contract-info/${info._id}`}>details</Link>
-                    )}
-                  </span>
+                      <span className="btn btn-primary btn-sm text-xs text-white">
+                        {isLogin ? (
+                          <Link href={`/update-contract/${info._id}`}>Update</Link>
+                        ) : (
+                          <Link href={`/contract-info/${info._id}`}>Details</Link>
+                        )}
+                      </span>
                     </td>
                   </tr>
                 ))}
