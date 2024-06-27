@@ -189,7 +189,13 @@ const ContractInfo = (params) => {
             </span>
           </div>
           {/* contractor */}
-          <div className="flex gap-10">
+          <div className="flex gap-20">
+            <span className="gap-2 flex flex-col">
+              <p className="primary-text">Contract Amount: </p>
+              <span className="text-normal text-zinc-600 font-bold">
+                {data?.contractAmount || "N/A"}
+              </span>
+            </span>
             <span className="gap-2 flex flex-col">
               <p className="primary-text">Contractor Name: </p>
               <span className="text-normal text-zinc-600 font-bold">
