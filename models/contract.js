@@ -20,6 +20,13 @@ const ContractSchema = new mongoose.Schema({
   posting: { type: Date },
   preBid: { type: Date },
   bidding: { type: Date },
+  //after bid
+  bidEvalStart: { type: Date },
+  bidEvalEnd: { type: Date },
+  postQualStart: { type: Date },
+  postQualEnd: { type: Date },
+  reso: { type: Date }, 
+  //noa
   noa: { type: Date },
   ntp: { type: Date },
   contract: { type: Date },

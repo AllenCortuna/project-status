@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { errorToast } from "@/config/toast";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/component/Loading";
+import Evaluation from "./Evaluation";
 
 const UpdateContract = (params) => {
   const id = params.params.id;
@@ -19,9 +20,13 @@ const UpdateContract = (params) => {
     posting: "",
     preBid: "",
     bidding: "",
+    bidEvalStart: "",
+    bidEvalEnd: "",
+    postQualStart: "",
+    postQualEnd: "",
+    reso: "",
     noa: "",
     ntp: "",
-    contract: "",
     ntpRecieve: "",
     submittedDocuments: {
       pertCPM: false,
@@ -112,7 +117,9 @@ const UpdateContract = (params) => {
       ) : (
         <form className="flex flex-col gap-8 min-w-[60rem] mx-auto">
           <span className="gap-3 w-[15rem] flex">
-            <h2 className="font-bold text-zinc-600 text-lg my-auto">{data?.contractID}</h2>
+            <h2 className="font-bold text-zinc-600 text-lg my-auto">
+              {data?.contractID}
+            </h2>
             <div className="border px-4 flex py-1 text-[0.7rem] text-center border-primary text-primary font-bold rounded-md">
               {data?.status}
             </div>
@@ -162,6 +169,8 @@ const UpdateContract = (params) => {
               />
             </span>
           </div>
+          {/* evaluation */}
+          <Evaluation data={data} handleData={handleData}/>
           {/* name */}
           <div className="flex gap-10">
             <input
@@ -228,6 +237,15 @@ const UpdateContract = (params) => {
               name="contractor"
               placeholder="Contractor Name"
               value={data?.contractor}
+              onChange={handleData}
+            />
+            <input
+              type="number"
+              autoComplete="off"
+              className="custom-input w-52"
+              name="contractAmount"
+              placeholder="Contract Amount"
+              value={data?.contractAmount}
               onChange={handleData}
             />
           </div>

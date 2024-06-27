@@ -68,20 +68,26 @@ const ContractInfo = (params) => {
             <span className="gap-2 flex flex-col">
               <p className="primary-text">Posting Date: </p>
               <span className="text-normal text-zinc-600 font-bold">
-                {data?.posting ? format(new Date(data?.posting), "MMM d,yyyy") : "N/A"}
+                {data?.posting
+                  ? format(new Date(data?.posting), "MMM d,yyyy")
+                  : "N/A"}
               </span>
             </span>
 
             <span className="gap-2 flex flex-col">
               <p className="primary-text">Pre Bid Date: </p>
               <span className="text-normal text-zinc-600 font-bold">
-                {data?.preBid ? format(new Date(data?.preBid), "MMM d,yyyy") : "N/A"}
+                {data?.preBid
+                  ? format(new Date(data?.preBid), "MMM d,yyyy")
+                  : "N/A"}
               </span>
             </span>
             <span className="gap-2 flex flex-col">
               <p className="primary-text">Bidding Date: </p>
               <span className="text-normal text-zinc-600 font-bold">
-                {data?.bidding ? format(new Date(data?.bidding), "MMM d,yyyy") : "N/A"}
+                {data?.bidding
+                  ? format(new Date(data?.bidding), "MMM d,yyyy")
+                  : "N/A"}
               </span>
             </span>
 
@@ -92,6 +98,63 @@ const ContractInfo = (params) => {
               </span>
             </span>
           </div>
+          {/* evaluation */}
+          <div className="flex gap-20">
+            {/* Bid Evaluation */}
+            <div className="flex flex-col gap-2 rounded-md">
+              <p className="primary-text">Bid Evaluation Date: </p>
+              <div className="flex gap-8">
+                <span className="gap-2 flex flex-col">
+                  <p className="primary-text">From: </p>
+                  <span className="text-sm text-zinc-600 font-bold">
+                    {data?.bidEvalStart
+                      ? format(new Date(data?.bidEvalStart), "MMM d,yyyy")
+                      : "N/A"}
+                  </span>
+                </span>
+                <span className="gap-2 flex flex-col">
+                  <p className="primary-text">To: </p>
+                  <span className="text-sm text-zinc-600 font-bold">
+                    {data?.bidEvalEnd
+                      ? format(new Date(data?.bidEvalEnd), "MMM d,yyyy")
+                      : "N/A"}
+                  </span>
+                </span>
+              </div>
+            </div>
+            {/* Post Qualification */}
+            <div className="flex flex-col gap-2 rounded-md">
+              <p className="primary-text">Post Qualification Date: </p>
+              <div className="flex gap-8">
+                <span className="gap-2 flex flex-col">
+                  <p className="primary-text">From: </p>
+                  <span className="text-sm text-zinc-600 font-bold">
+                    {data?.postQualStart
+                      ? format(new Date(data?.postQualStart), "MMM d,yyyy")
+                      : "N/A"}
+                  </span>
+                </span>
+                <span className="gap-2 flex flex-col">
+                  <p className="primary-text">To: </p>
+                  <span className="text-sm text-zinc-600 font-bold">
+                    {data?.postQualEnd
+                      ? format(new Date(data?.postQualEnd), "MMM d,yyyy")
+                      : "N/A"}
+                  </span>
+                </span>
+              </div>
+            </div>
+            {/* Resolution */}
+            <span className="gap-2 flex flex-col">
+              <p className="primary-text">Reso Date: </p>
+              <span className="text-normal text-zinc-600 font-bold">
+                {data?.postQualEnd
+                  ? format(new Date(data?.postQualEnd), "MMM d,yyyy")
+                  : "N/A"}
+              </span>
+            </span>
+          </div>
+
           {/* award date */}
           <div className="flex gap-20">
             <span className="gap-2 flex flex-col">
@@ -110,14 +173,18 @@ const ContractInfo = (params) => {
             <span className="gap-2 flex flex-col">
               <p className="primary-text">NTP Recieve Date: </p>
               <span className="text-normal text-zinc-600 font-bold">
-                {data?.ntpRecieve ? format(new Date(data?.ntpRecieve), "MMM d,yyyy") : "N/A"}
+                {data?.ntpRecieve
+                  ? format(new Date(data?.ntpRecieve), "MMM d,yyyy")
+                  : "N/A"}
               </span>
             </span>
 
             <span className="gap-2 flex flex-col">
               <p className="primary-text">Contract Date: </p>
               <span className="text-normal text-zinc-600 font-bold">
-                {data?.contract ? format(new Date(data?.contract), "MMM d,yyyy") : "N/A"}
+                {data?.contract
+                  ? format(new Date(data?.contract), "MMM d,yyyy")
+                  : "N/A"}
               </span>
             </span>
           </div>
@@ -130,17 +197,17 @@ const ContractInfo = (params) => {
               </span>
             </span>
           </div>
-           {/* other info */}
-           <div className="flex gap-20">
+          {/* other info */}
+          <div className="flex gap-20">
             <span className="gap-2 flex flex-col">
               <p className="primary-text">Last Update: </p>
               <span className="text-normal text-zinc-600 font-bold">
-                {data?.lastUpdated ? format(new Date(data?.lastUpdated), "MMM d,yyyy") : "N/A"}
+                {data?.lastUpdated
+                  ? format(new Date(data?.lastUpdated), "MMM d,yyyy")
+                  : "N/A"}
               </span>
             </span>
-
           </div>
-         
         </span>
       )}
     </div>
