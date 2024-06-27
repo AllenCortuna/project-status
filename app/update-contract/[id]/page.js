@@ -6,6 +6,7 @@ import { errorToast } from "@/config/toast";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/component/Loading";
 import Evaluation from "./Evaluation";
+import Link from "next/link";
 
 const UpdateContract = (params) => {
   const id = params.params.id;
@@ -124,6 +125,18 @@ const UpdateContract = (params) => {
               {data?.status}
             </div>
           </span>
+          {/* name */}
+          <div className="flex gap-10">
+            <input
+              type="text"
+              autoComplete="off"
+              className="custom-input w-full"
+              name="projectName"
+              placeholder="Project Name"
+              value={data?.projectName}
+              onChange={handleData}
+            />
+          </div>
           {/* advertisement date */}
           <div className="flex gap-10">
             <span className="gap-2 flex flex-col">
@@ -170,19 +183,8 @@ const UpdateContract = (params) => {
             </span>
           </div>
           {/* evaluation */}
-          <Evaluation data={data} handleData={handleData}/>
-          {/* name */}
-          <div className="flex gap-10">
-            <input
-              type="text"
-              autoComplete="off"
-              className="custom-input w-full"
-              name="projectName"
-              placeholder="Project Name"
-              value={data?.projectName}
-              onChange={handleData}
-            />
-          </div>
+          <Evaluation data={data} handleData={handleData} />
+
           {/* award date */}
           <div className="flex gap-10">
             <span className="gap-2 flex flex-col">
@@ -313,12 +315,20 @@ const UpdateContract = (params) => {
             type="submit"
             className={`btn ${
               isLoading ? "btn-disable" : "btn-neutral"
-            } text-xs mt-10 w-52 mx-auto`}
+            } text-xs mt-10 w-32 mx-auto fixed bottom-5 right-5`}
             disabled={isLoading}
             onClick={handleSubmit}
           >
-            {isLoading ? "Loading..." : "Update Contract"}
+            {isLoading ? "Loading..." : "update"}
           </button>
+          <Link
+            className={`btn ${
+              isLoading ? "btn-disable" : "btn-neutral"
+            } text-xs mt-10 w-32 mx-auto fixed bottom-5 left-5`}
+            href={"/"}
+          >
+            {isLoading ? "Loading..." : "dashboard"}
+          </Link>
         </form>
       )}
     </div>

@@ -78,7 +78,7 @@ const SearchContracts = () => {
           onChange={(e) => setStatus(e.target.value)}
           className="custom-input"
         >
-          <option value="">Status</option>
+          <option value="">🔽 Status</option>
           <option value="posted">Posted</option>
           <option value="awarded">Awarded</option>
           <option value="proceed">Proceed</option>
@@ -133,9 +133,9 @@ const SearchContracts = () => {
                     <td>
                       <span className="btn btn-primary btn-sm text-xs text-white">
                         {isLogin ? (
-                          <Link href={`/update-contract/${info._id}`}>Update</Link>
+                          <Link href={`/update-contract/${info._id}`}>update</Link>
                         ) : (
-                          <Link href={`/contract-info/${info._id}`}>Details</Link>
+                          <Link href={`/contract-info/${info._id}`}>details</Link>
                         )}
                       </span>
                     </td>

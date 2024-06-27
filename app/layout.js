@@ -12,8 +12,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${font.className}`}>
-        <Navbar />
+      <body className={`${font.className} flex flex-col w-screen h-screen`}>
+        <Navbar /> 
         <main>
         {children}
         </main>

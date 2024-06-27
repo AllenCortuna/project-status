@@ -42,13 +42,13 @@ body {
 /* Scrollbar track */
 ::-webkit-scrollbar-track {
   background: #eceff4;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* Scrollbar thumb */
 ::-webkit-scrollbar-thumb {
   background: #516f95;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* Scrollbar thumb on hover */
