@@ -5,6 +5,7 @@ import AwardTable from "./component/AwardTable";
 import Loading from "./component/Loading";
 import IncompleteTable from "./component/IncompleteTable";
 import ActiveTable from "./component/ActiveTable";
+import NoResult from "./component/NoResult";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -43,6 +44,31 @@ const Home = () => {
 
     fetchData();
   }, []);
+
+  const renderTable = () => {
+    switch (table) {
+      case "active":
+        return data?.posted > 0 ? (
+          <ActiveTable data={data?.activeList} isLogin={isLogin} />
+        ) : (
+          <NoResult text={"List of Posted Contracts"} />
+        );
+      case "award":
+        return data?.awarded > 0 ? (
+          <AwardTable data={data?.awardedList} isLogin={isLogin} />
+        ) : (
+          <NoResult text={"Contracts without NTP"} />
+        );
+      case "incomplete":
+        return data?.incompleteDoc > 0 ? (
+          <IncompleteTable data={data?.incompleteDocList} isLogin={isLogin} />
+        ) : (
+          <NoResult text={"Incomplete documents"} />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="flex flex-col items-center gap-10 p-20">
@@ -130,15 +156,7 @@ const Home = () => {
       </div>
       {isLoading && <Loading />}
       {error && <div className="text-red-500">Error: {error.message}</div>}
-      {table === "active" && data?.posted > 0 && (
-        <ActiveTable data={data?.activeList} isLogin={isLogin} />
-      )}
-      {table === "award" && data?.awarded > 0 && (
-        <AwardTable data={data?.awardedList} isLogin={isLogin} />
-      )}
-      {table === "incomplete" && data?.incompleteDoc > 0 && (
-        <IncompleteTable data={data?.incompleteDocList} isLogin={isLogin} />
-      )}
+      {renderTable()}
     </div>
   );
 };

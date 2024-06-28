@@ -4,8 +4,10 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { errorToast } from "@/config/toast";
+import { userStore } from "@/state/user";
 
 const LoginPage = () => {
+  const setIsLogin = userStore((state) => state.setIsLogin);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -28,6 +30,7 @@ const LoginPage = () => {
       if (response.status === 200) {
         // Save the result in local storage (assuming a token is returned)
         localStorage.setItem("token", response.data.result.token);
+        setIsLogin(response.data.result.token)
         setIsLoading(false);
         router.push("/"); // Login successful, redirect to the main page
       } else {

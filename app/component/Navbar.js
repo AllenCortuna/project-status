@@ -1,19 +1,22 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import dpwhLogo from "../../public/dpwhLogo.png";
+import { userStore } from "@/state/user";
 
 export const Navbar = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const isLogin = userStore((state) => state.isLogin);
+  const setIsLogin = userStore((state) => state.setIsLogin);
   const router = useRouter();
 
   useEffect(() => {
     // Check if the user is logged in by verifying the token in local storage
     const token = localStorage.getItem("token");
     setIsLogin(!!token);
-  }, [isLogin]);
+    console.log("isLogin :>> ", isLogin);
+  }, [isLogin, setIsLogin]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");

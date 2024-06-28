@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Link from "next/link";
 import Image from "next/image";
-import query from "../../public/img/Query-Insight.svg";
+import conn from "../../public/img/Connection.svg";
 
 const CreateContracts = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -162,7 +162,7 @@ const CreateContracts = () => {
           <p className="text-xs font-bold px-5 text-primary border rounded-lg p-3 border-primary">
             Unathorized User
           </p>
-          <Image src={query} alt="Query Logo.png" width={300} />
+          <Image src={conn} alt="Connection.png" width={300} />
           <Link className="btn rounded-full btn-neutral text-xs w-28 mx-auto" href={"/login"}>Login</Link>
         </div>
       )}
