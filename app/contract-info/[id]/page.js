@@ -193,7 +193,7 @@ const ContractInfo = (params) => {
             <span className="gap-2 flex flex-col">
               <p className="primary-text">Contract Amount: </p>
               <span className="text-normal text-zinc-600 font-bold">
-                {data?.contractAmount || "N/A"}
+                {data?.contractAmount ? data.contractAmount.toLocaleString() : "N/A"}
               </span>
             </span>
             <span className="gap-2 flex flex-col">
