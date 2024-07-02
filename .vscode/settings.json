@@ -1,3 +1,4 @@
 {
-    "terminal.integrated.fontFamily": "Monofur Nerd Font"
+    "terminal.integrated.fontFamily": "FantasqueSansM Nerd Font, monospace",
+    "editor.fontFamily": "FantasqueSansM Nerd Font, monospace"
 }
