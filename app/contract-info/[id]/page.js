@@ -55,7 +55,11 @@ const ContractInfo = (params) => {
           </span>
 
           {/* name */}
-          <div className="flex -mt-10">
+          <div
+            className="flex -mt-10 text-left tooltip hover:cursor-pointer"
+            data-tip="Clik to copy."
+            onClick={() => navigator.clipboard.writeText(info.projectName)}
+          >
             <span className="gap-2 flex flex-col">
               <span className="text-xs text-zinc-500">
                 {data?.projectName || "N/A"}
@@ -193,7 +197,15 @@ const ContractInfo = (params) => {
             <span className="gap-2 flex flex-col">
               <p className="primary-text">Contract Amount: </p>
               <span className="text-normal text-zinc-600 font-bold">
-                {data?.contractAmount ? <span className="tracking-tight"> <span className="text-xs mr-2">&#8369;</span>{data.contractAmount.toLocaleString()} </span>: "N/A"}
+                {data?.contractAmount ? (
+                  <span className="tracking-tight">
+                    {" "}
+                    <span className="text-xs mr-2">&#8369;</span>
+                    {data.contractAmount.toLocaleString()}{" "}
+                  </span>
+                ) : (
+                  "N/A"
+                )}
               </span>
             </span>
             <span className="gap-2 flex flex-col">

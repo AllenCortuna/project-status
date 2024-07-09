@@ -6,7 +6,7 @@ import { errorToast } from "@/config/toast";
 import { ToastContainer } from "react-toastify";
 import Link from "next/link";
 import Image from "next/image";
-import query from '../../public/img/Query-Insight.svg'
+import query from "../../public/img/Query-Insight.svg";
 
 const SearchContracts = () => {
   const [contractID, setContractID] = useState("");
@@ -117,7 +117,13 @@ const SearchContracts = () => {
               <tbody>
                 {results?.map((info, ind) => (
                   <tr key={ind} className="hover">
-                    <td className="text-xs text-zinc-500">
+                    <td
+                      className="text-xs tooltip text-zinc-500 hover:cursor-pointer text-left"
+                      data-tip="Clik to copy."
+                      onClick={() =>
+                        navigator.clipboard.writeText(info.projectName)
+                      }
+                    >
                       <span className="text-xs text-primary font-bold">
                         {info.contractID}
                       </span>
@@ -133,9 +139,13 @@ const SearchContracts = () => {
                     <td>
                       <span className="btn btn-primary btn-sm text-xs text-white">
                         {isLogin ? (
-                          <Link href={`/update-contract/${info._id}`}>update</Link>
+                          <Link href={`/update-contract/${info._id}`}>
+                            update
+                          </Link>
                         ) : (
-                          <Link href={`/contract-info/${info._id}`}>details</Link>
+                          <Link href={`/contract-info/${info._id}`}>
+                            details
+                          </Link>
                         )}
                       </span>
                     </td>
@@ -147,12 +157,10 @@ const SearchContracts = () => {
         ) : (
           !isLoading && (
             <div className="w-[30rem] flex justify-center items-center flex-col mt-10">
-              <Image
-                src={query}
-                alt="Query Logo.png"
-                width={300}
-              />
-              <p className="text-xs font-bold px-5 text-primary border rounded-lg p-3 border-primary">No results found.</p>
+              <Image src={query} alt="Query Logo.png" width={300} />
+              <p className="text-xs font-bold px-5 text-primary border rounded-lg p-3 border-primary">
+                No results found.
+              </p>
             </div>
           )
         )}

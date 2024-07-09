@@ -22,7 +22,13 @@ const IncompleteTable = ({ data, isLogin }) => {
           <tbody>
             {data?.map((info, ind) => (
               <tr key={ind} className="hover">
-                <td className="text-xs text-zinc-500">
+                <td
+                  className="text-xs tooltip text-zinc-500 hover:cursor-pointer text-left"
+                  data-tip="Clik to copy."
+                  onClick={() =>
+                    navigator.clipboard.writeText(info.projectName)
+                  }
+                >
                   <span className="text-xs text-primary font-bold">
                     {info.contractID}
                   </span>
