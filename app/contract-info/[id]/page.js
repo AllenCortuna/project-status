@@ -152,8 +152,8 @@ const ContractInfo = (params) => {
             <span className="gap-2 flex flex-col">
               <p className="primary-text">Reso Date: </p>
               <span className="text-normal text-zinc-600 font-bold">
-                {data?.postQualEnd
-                  ? format(new Date(data?.postQualEnd), "MMM d,yyyy")
+                {data?.reso
+                  ? format(new Date(data?.reso), "MMM d,yyyy")
                   : "N/A"}
               </span>
             </span>
