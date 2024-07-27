@@ -95,8 +95,8 @@ const SearchContracts = () => {
       <button
         onClick={handleSearch}
         className={`btn ${
-          isLoading ? "btn-disable" : "btn-neutral"
-        } text-xs mt-5 w-48 mx-auto`}
+          isLoading ? "btn-disable" : "btn-primary text-white"
+        } text-xs mt-5 mx-auto`}
         disabled={isLoading}
       >
         {isLoading ? "Loading..." : "Search"}

@@ -9,7 +9,7 @@ import NoResult from "./component/NoResult";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [table, setTable] = useState("incomplete");
+  const [table, setTable] = useState("award");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
@@ -59,19 +59,13 @@ const Home = () => {
         ) : (
           <NoResult text={"Contracts without NTP"} />
         );
-      case "incomplete":
-        return data?.incompleteDoc > 0 ? (
-          <IncompleteTable data={data?.incompleteDocList} isLogin={isLogin} />
-        ) : (
-          <NoResult text={"Incomplete documents"} />
-        );
       default:
         return null;
     }
   };
 
   return (
-    <div className="flex flex-col items-center gap-10 p-20">
+    <div className="flex flex-col items-center gap-5 p-10">
       <div className="stats border-2 border-zinc-300">
         <button
           className={`stat ${table == "active" && "bg-primary"}`}
@@ -127,32 +121,6 @@ const Home = () => {
           </div>
         </button>
 
-        <button
-          className={`stat ${table == "incomplete" && "bg-primary"}`}
-          onClick={() => setTable("incomplete")}
-        >
-          <div
-            className={`stat-value flex gap-3 items-center ${
-              table == "incomplete" ? "text-white" : "text-primary"
-            }`}
-          >
-            {data?.incompleteDoc || "0"}
-            <span
-              className={`stat-title text-xs font-bold my-auto ${
-                table == "incomplete" ? "text-white" : "text-primary"
-              } `}
-            >
-              Incomplete Documents
-            </span>
-          </div>
-          <div
-            className={`stat-desc text-[0.7rem] ${
-              table == "incomplete" && "text-zinc-200"
-            } `}
-          >
-            Incomplete Pert CPM, Permit etc
-          </div>
-        </button>
       </div>
       {isLoading && <Loading />}
       {error && <div className="text-red-500">Error: {error.message}</div>}
