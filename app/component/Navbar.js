@@ -38,16 +38,37 @@ export const Navbar = ({ children }) => {
         <div className="flex gap-3">
           <Link
             href={"/search-contracts"}
-            className="relative border border-primary text-zinc-600 text-xs leading-6 py-1 px-2 bg-transparent hover:bg-transparent cursor-pointer font-normal"
+            className="nav-btn"
           >
             Search
           </Link>
           <Link
-            href={"/search-contracts"}
-            className="relative border border-primary text-zinc-600 text-xs leading-6 py-1 px-2 bg-transparent hover:bg-transparent cursor-pointer font-normal"
+            href={"/bidding"}
+            className="nav-btn"
+          >
+            Bidding
+          </Link>
+          <Link
+            href={"/"}
+            className="nav-btn"
           >
             Dashboard
           </Link>
+          {isLogin ? (
+            <button
+              onClick={handleLogout}
+              className="nav-btn"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              href={"/login"}
+              className="nav-btn"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
 

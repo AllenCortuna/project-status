@@ -7,6 +7,8 @@ import { ToastContainer } from "react-toastify";
 import Link from "next/link";
 import Image from "next/image";
 import query from "../../public/img/Query-Insight.svg";
+import ContractTable from "../component/ContractTable";
+import ContractDetails from "../component/ContractDetails";
 
 const SearchContracts = () => {
   const [contractID, setContractID] = useState("");
@@ -17,7 +19,13 @@ const SearchContracts = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
-
+  const [contract, setContract] = useState(null);
+  const handleDetails = (info) => {
+    setContract(info);
+  };
+  const handleClose = () => {
+    setContract(null);
+  };
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLogin(!!token);
@@ -56,6 +64,9 @@ const SearchContracts = () => {
   return (
     <div className="flex w-screen flex-col justify-center items-center p-5">
       <ToastContainer />
+      {contract && (
+        <ContractDetails contract={contract} handleClose={handleClose} />
+      )}
       <div className="grid grid-cols-3 mt-10 gap-4 mb-4 max-w-[40rem]">
         <input
           type="text"
@@ -104,56 +115,11 @@ const SearchContracts = () => {
       {error && <p className="text-red-500">Error: {error.message}</p>}
       <div>
         {results.length > 0 ? (
-          <div className="flex flex-col mx-auto border border-zinc-300 rounded-lg mt-5 overflow-x-auto scroll-container max-h-[30rem]">
-            <table className="table table-zebra max-w-[72rem] table-pin-rows">
-              <thead>
-                <tr className="text-xs text-zinc-500">
-                  <th className="text-xs">Result base on your search</th>
-                  <th className="w-40">Status</th>
-                  <th className="w-40">Last Update</th>
-                  <th>Options</th>
-                </tr>
-              </thead>
-              <tbody>
-                {results?.map((info, ind) => (
-                  <tr key={ind} className="hover">
-                    <td
-                      className="text-xs tooltip text-zinc-500 hover:cursor-pointer text-left"
-                      data-tip="Clik to copy."
-                      onClick={() =>
-                        navigator.clipboard.writeText(info.projectName)
-                      }
-                    >
-                      <span className="text-xs text-primary font-bold">
-                        {info.contractID}
-                      </span>
-                      :&nbsp;
-                      {info.projectName}
-                    </td>
-                    <td className="text-xs text-zinc-500">
-                      {info?.status || ""}
-                    </td>
-                    <td className="text-xs text-zinc-500">
-                      {info?.lastUpdated?.split("T")[0] || ""}
-                    </td>
-                    <td>
-                      <span className="btn btn-primary btn-sm text-xs text-white">
-                        {isLogin ? (
-                          <Link href={`/update-contract/${info._id}`}>
-                            update
-                          </Link>
-                        ) : (
-                          <Link href={`/contract-info/${info._id}`}>
-                            details
-                          </Link>
-                        )}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ContractTable
+            data={results}
+            handleDetails={handleDetails}
+            isLogin={isLogin}
+          />
         ) : (
           !isLoading && (
             <div className="w-[30rem] flex justify-center items-center flex-col mt-10">

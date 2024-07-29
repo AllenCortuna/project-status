@@ -32,6 +32,9 @@ body {
   .check-label {
     @apply flex items-center gap-2 text-xs text-zinc-600 rounded-md p-2 border border-zinc-300
   }
+  .nav-btn {
+    @apply relative border border-primary text-zinc-600 text-xs leading-6 py-1 px-2 bg-transparent hover:bg-transparent cursor-pointer font-normal hover:bg-neutral hover:text-white
+  }
 }
 
 /* Total scrollbar width */

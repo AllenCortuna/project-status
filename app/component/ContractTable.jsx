@@ -74,7 +74,7 @@ const ContractTable = ({ data, isLogin, handleDetails }) => {
         <thead>
           <tr className="text-xs text-zinc-500">
             <th className="text-xs">Contract with no Award</th>
-            <th className="w-40">Pre Bid</th>
+            <th className="w-40">Status</th>
             <th className="w-40">Bidding</th>
             <th>Options</th>
           </tr>
@@ -94,7 +94,7 @@ const ContractTable = ({ data, isLogin, handleDetails }) => {
                 {info.projectName}
               </td>
               <td className="text-xs text-zinc-500">
-                {format(new Date(info?.preBid), "MMM-d-yyyy") || ""}
+                {info.status || ""}
               </td>
               <td className="text-xs text-zinc-500">
                 {format(new Date(info?.bidding), "MMM-d-yyyy") || ""}

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AwardTable from "./component/AwardTable";
 import Loading from "./component/Loading";
-import IncompleteTable from "./component/IncompleteTable";
 import ActiveTable from "./component/ActiveTable";
 import NoResult from "./component/NoResult";
 
@@ -15,7 +14,6 @@ const Home = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    // Check if the user is logged in by verifying the token in local storage
     const token = localStorage.getItem("token");
     setIsLogin(!!token);
   }, [isLogin]);
@@ -33,7 +31,11 @@ const Home = () => {
             },
           }
         );
-        console.log("response", response);
+        if (response.data.result.activeList > response.data.result.awardedList) {
+          setTable("active");
+        } else {
+          setTable("award");
+        }
         setData(response.data.result);
         setIsLoading(false);
       } catch (error) {
@@ -120,7 +122,6 @@ const Home = () => {
             Total contract(s) without NTP
           </div>
         </button>
-
       </div>
       {isLoading && <Loading />}
       {error && <div className="text-red-500">Error: {error.message}</div>}
