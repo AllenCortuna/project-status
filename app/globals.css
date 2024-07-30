@@ -39,7 +39,8 @@ body {
 
 /* Total scrollbar width */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
+  height: 2px;
 }
 
 /* Scrollbar track */
@@ -68,4 +69,3 @@ body {
   background: #414a5b; /* Background color */
   color: rgb(255, 255, 255);       /* Text color */
 }
-

@@ -25,7 +25,7 @@ export const Navbar = ({ children }) => {
 
   return (
     <div className="w-screen h-screen flex flex-col justify-start gap-0">
-      <div className="navbar px-5 bg-zinc-200 border-b z-30 border-zinc-300">
+      <div className="navbar px-5 bg-zinc-200 border-b z-30 border-zinc-300 fixed top-0">
         <div className="flex-1">
           <Link
             href={"/"}
@@ -72,7 +72,7 @@ export const Navbar = ({ children }) => {
         </div>
       </div>
 
-      <div>{children}</div>
+      <div className="flex justify-center items-center w-full h-full mt-16 overflow-scroll">{children}</div>
     </div>
   );
 };

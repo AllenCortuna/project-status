@@ -4,7 +4,7 @@ import { format } from "date-fns";
 const ContractDetails = ({ contract, handleClose }) => {
   return (
     <div className="fixed top-0 bottom-0 right-0 left-0 w-full h-full bg-zinc-800 bg-opacity-50 py-6 flex p-4 flex-col justify-center sm:py-12 gap-4 z-50">
-      <div className="flex flex-col gap-14 w-[54rem] mx-auto shadow-2xl bg-white rounded-xl p-5 px-8 relative border">
+      <div className="flex flex-col gap-14 w-[56rem] mx-auto shadow-2xl bg-white rounded-xl p-5 px-8 relative border">
         <span className="gap-3 w-[15rem] flex z-50">
           <h2 className="font-bold text-zinc-600 text-lg my-auto">
             {contract?.contractID}
