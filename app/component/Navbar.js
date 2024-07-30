@@ -72,7 +72,7 @@ export const Navbar = ({ children }) => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center w-full h-full mt-16 overflow-scroll">{children}</div>
+      <div className="flex justify-center items-start w-full h-full mt-16 overflow-scroll">{children}</div>
     </div>
   );
 };

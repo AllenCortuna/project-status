@@ -54,7 +54,7 @@ const Bidding = () => {
             right: "title",
           }}
           events={events}
-          dayMaxEvents={2}
+          dayMaxEvents={1}
           eventContent={renderEventContent}
           moreLinkClick={handleMoreLinkClick}
           selectable={true}
